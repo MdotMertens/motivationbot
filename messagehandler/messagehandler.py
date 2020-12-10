@@ -7,7 +7,9 @@ class MessageHandler(object):
     def __init__(self):
         self.session_registry = SessionRegistry()
         self.prefix = '!'
-
+    # Handler is responsible for creating and managing sessions
+    # The handler assigns a given keyword to an instance of a class which
+    # then handles the message accordingly
     async def handle_message(self, message: discord.Message):
         if self.session_registry.get_session(message.author) is None:
             self.session_registry.add_session(message.author)
