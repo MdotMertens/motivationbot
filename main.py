@@ -1,8 +1,13 @@
 import os
 from dotenv import load_dotenv
 load_dotenv()
+
 import discord
+
+from messagehandler.messagehandler import MessageHandler
+
 client = discord.Client()
+message_handler = MessageHandler()
 
 @client.event
 async def on_ready():
@@ -13,8 +18,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+    else:
+        await message_handler.handle_message(message)
 
 client.run(os.getenv("DISCORD_TOKEN"))
