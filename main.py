@@ -4,7 +4,7 @@ load_dotenv()
 
 import discord
 
-from messagehandler.messagehandler import MessageHandler
+from messagehandler.handler import MessageHandler
 
 client = discord.Client()
 message_handler = MessageHandler()
@@ -19,6 +19,6 @@ async def on_message(message):
     if message.author == client.user:
         return
     else:
-        await message_handler.handle_message(message)
+        await message_handler.handle(message)
 
 client.run(os.getenv("DISCORD_TOKEN"))
