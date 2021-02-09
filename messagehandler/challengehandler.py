@@ -46,6 +46,7 @@ class ChallengeHandler(AbstractHandler):
             elif session.stage == 4:
                 for mention in message.mentions:
                     session.challenge.add_participant(mention)
+                session.stage += 1
                 await message.channel.send(' '.join(map(str, session.challenge.participants)))
 
     def date_from_message(self, date_string):

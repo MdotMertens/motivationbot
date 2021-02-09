@@ -10,7 +10,7 @@ class SessionRegistry(object):
 
     def add_session(self, user: discord.User, context=None):
         if self._registry.get(user, None) is None:
-            session = Session()
+            session = Session(stage=0)
             if context is not None:
                 session.context = context
             self._registry[user] = session
