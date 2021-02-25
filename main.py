@@ -1,13 +1,12 @@
 import os
+import discord
+from messagehandler.handler import MessageHandler
 from dotenv import load_dotenv
 load_dotenv()
 
-import discord
-
-from messagehandler.handler import MessageHandler
-
 client = discord.Client()
 message_handler = MessageHandler()
+
 
 @client.event
 async def on_ready():
@@ -15,7 +14,7 @@ async def on_ready():
 
 
 @client.event
-async def on_message(message):
+async def on_message(message: discord.Message):
     if message.author == client.user:
         return
     else:
