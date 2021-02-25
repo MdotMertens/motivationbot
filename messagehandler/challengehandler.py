@@ -1,5 +1,4 @@
 import discord
-from discord import utils
 
 from messagehandler.handler import AbstractHandler
 from session.session import Session
@@ -12,7 +11,13 @@ class ChallengeHandler(AbstractHandler):
             await message.channel.send('What do you want your Challenge to be called?')
             session.stage += 1
         elif session.stage == 1:
-            session.challenge = Challenge(message.content,message.author)
-            await message.channel.send("Created challenge with name {}".format(session.challenge.name))
-            session.stage += 1
-            
+            if message.content:
+                session.challenge = Challenge(message.content,message.author)
+                await message.channel.send("Created challenge with name {}".format(session.challenge.name))
+                await message.channel.send("When do you want this challenge to start? (Format: DD/MM/YYYY)")
+                session.stage += 1
+        elif session.stage == 2:
+            if message.content:
+                challenge = session.challenge
+                for mention in message.mentions:
+                    challenge.add_participant(mention)

@@ -1,0 +1,17 @@
+{
+    "configurations": {
+        "MotivationBot: Launch:":{
+            "adapter": "debugpy",
+            "configuration" : {
+                "name": "MoativationBot: Launch",
+                "type": "python",
+                "request": "launch",
+                "cwd": "${workspaceRoot}/",
+                "pyhton": "python",
+                "stopOnEntry": true,
+                "console": "externalTerminal",
+                "program": "${workspaceRoot}/main.py"
+            }
+        }
+    }
+}
