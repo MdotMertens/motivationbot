@@ -1,8 +1,10 @@
+import attr
+
+from messagehandler.models.Challenge import Challenge
+
+@attr.s
 class Session(object):
 
-    def __init__(self, stage=0):
-        self.stage = stage      
-        self.context = None
-
-    def set_context(self, context: str):
-        self.context = context
+    stage = attr.ib()
+    context = attr.ib(default=None)
+    challenge = attr.ib(default=None)
